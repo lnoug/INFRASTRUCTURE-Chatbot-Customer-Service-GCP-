@@ -6,10 +6,10 @@ Fulfillment is the process of providing a response to the user based on their in
                    4. Enable webhook and provide the URL for your fulfillment service.
 CODE:
 
-                            gcloud alpha dialogflow webhook create \
-                            --display-name=DISPLAY_NAME \
-                            --uri=URI \
-                            --project=PROJECT_ID
+gcloud alpha dialogflow webhook create \
+--display-name=DISPLAY_NAME \
+--uri=URI \
+--project=PROJECT_ID
                             
 Output:
 The output of this step will be a newly created webhook.
@@ -23,9 +23,9 @@ The final step is to deploy and test your chatbot. You can deploy your chatbot b
                 4. Click on "Restore from zip" and upload your Dialogflow agent ZIP file.
                       5. Click "Import".
 CODE:
-                      gcloud alpha dialogflow agent import \
-                      --source=SOURCE \
-                      --project=PROJECT_ID
+gcloud alpha dialogflow agent import \
+--source=SOURCE \
+--project=PROJECT_ID
 
 Output:
 The output of this step will be a newly deployed chatbot.
