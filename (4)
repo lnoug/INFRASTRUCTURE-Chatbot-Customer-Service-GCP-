@@ -1,0 +1,47 @@
+#7. Monitoring and Intergration
+
+# Monitoring
+To monitor your chatbot, you can use Stackdriver, a monitoring service provided by GCP. 
+You can monitor logs, track errors, and set up alerts to get notified when something goes wrong.
+
+CODE:
+
+gcloud logging read "resource.type=global AND labels.'run.googleapis.com/revision_name'=REVISION_NAME"
+
+Output:
+The output of this step will be the logs for your chatbot.
+
+#Intergration
+Intergration with Messaging Platform
+
+To integrate your chatbot with a messaging platform, you need to create a webhook that will listen for incoming messages and send them to your chatbot. You can create a webhook by following these steps:
+1. Go to the Dialogflow Console.
+    2. Click on your agent name.
+        3. Click on "Integrations".
+            4. Select the messaging platform you want to integrate with (e.g., Facebook Messenger).
+                  5. Follow the instructions to set up your webhook.
+   
+CODE:
+
+gcloud alpha dialogflow integrations create --type=TYPE \
+--integration-name=INTEGRATION_NAME \
+--project=PROJECT_ID \
+--region=REGION \
+--service-account=SERVICE_ACCOUNT \
+--webhook-url=WEBHOOK_URL
+
+Output:
+The output of this step will be a newly created webhook for your messaging platform.
+
+
+#8. Deploy and Test
+After integrating your chatbot with a messaging platform, you can deploy and test your chatbot as you did in step 6.
+
+CODE:
+
+gcloud alpha dialogflow agent import \
+--source=SOURCE \
+--project=PROJECT_ID
+
+Output:
+The output of this step will be a newly deployed chatbot that is integrated with your messaging platform.                         
