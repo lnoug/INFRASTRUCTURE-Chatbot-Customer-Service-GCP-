@@ -1,0 +1,69 @@
+ 6: Connect Dialogflow to Cloud Function and Firestore
+The final step is to connect Dialogflow to our Cloud Function and Firestore. 
+This will allow Dialogflow to send user requests to our Cloud Function and retrieve responses from Firestore. 
+Follow these steps to connect Dialogflow to our Cloud Function and Firestore:
+1. Go to the Fulfillment section in the Dialogflow Console.
+    2. Enable Webhook and enter the URL of your Cloud Function.
+        3. Click on "Save".
+            4. Go to the Integrations section in the Dialogflow Console.
+                5. Enable Firestore and select the database where you want to store user data.
+                     6. Click on "Save".
+Now our Customer Service chatbot application is ready to use! 
+
+#
+CODE:
+
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const {WebhookClient} = require('dialogflow-fulfillment');
+
+admin.initializeApp();
+
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
+  const agent = new WebhookClient({request, response});
+
+  function handleWelcomeIntent(agent) {
+    const userId = request.body.originalDetectIntentRequest.payload.user.userId;
+    const userDataRef = admin.firestore().collection('users').doc(userId);
+
+    userDataRef.get()
+      .then((doc) => {
+        if (doc.exists) {
+          const firstName = doc.data().firstName;
+          agent.add(`Welcome back, ${firstName}! How can I help you today?`);
+        } else {
+          agent.add('Welcome to our customer service chatbot. Please tell me your first name.');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        agent.add('Oops! Something went wrong. Please try again later.');
+      });
+  }
+
+  function handleDefaultFallbackIntent(agent) {
+    agent.add('I did not understand your request. Please try again.');
+  }
+
+  function handleNameIntent(agent) {
+    const userId = request.body.originalDetectIntentRequest.payload.user.userId;
+    const firstName = request.body.queryResult.parameters.firstName;
+    const userDataRef = admin.firestore().collection('users').doc(userId);
+
+    userDataRef.set({firstName: firstName})
+      .then(() => {
+        agent.add(`Nice to meet you, ${firstName}! How can I help you today?`);
+      })
+      .catch((error) => {
+        console.error(error);
+        agent.add('Oops! Something went wrong. Please try again later.');
+      });
+  }
+
+  let intentMap = new Map();
+  intentMap.set('Default Welcome Intent', handleWelcomeIntent);
+  intentMap.set('Default Fallback Intent', handleDefaultFallbackIntent);
+  intentMap.set('Name Intent', handleNameIntent);
+
+  agent.handleRequest(intentMap);
+});
