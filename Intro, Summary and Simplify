@@ -1,0 +1,19 @@
+# INTRO
+
+A Customer Service chatbot is a type of application that uses artificial intelligence to help customers find information and solve problems related to a product or service.
+In this expert code infrastructure, we will create a functional Customer Service chatbot application on Google Cloud Platform (GCP) using Dialogflow, Cloud Functions, and Firestore.
+The application will allow users to ask questions and receive answers related to a product or service, improving customer satisfaction and reducing the workload of human support staff.
+
+# SUMMARY
+
+In this code infrastructure, we created a Customer Service chatbot application on Google Cloud Platform (GCP) using Dialogflow, Cloud Functions, and Firestore. 
+We taught the chatbot what kinds of questions people might ask and what answers it should give. We also made sure that the chatbot is connected to a special place where it can remember who you are and what questions you've asked before.
+When you talk to the chatbot, it will try to help you right away. If it doesn't understand what you're saying, it will ask you to try again. If you're new to the chatbot, it will ask for your name so that it can remember you.
+
+# Simplify
+
+We created a special talking robot that can help people with questions about a product or service.
+We taught the robot what kinds of questions people might ask and what answers it should give. 
+We also made sure that the robot is connected to a special place where it can remember who you are and what questions you've asked before. When you talk to the robot, it will try to help you right away. 
+If it doesn't understand what you're saying, it will ask you to try again. If you're new to the robot, it will ask for your name so that it can remember you.
+
