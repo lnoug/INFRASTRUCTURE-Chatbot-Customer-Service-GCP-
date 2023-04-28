@@ -1,69 +1,31 @@
- 6: Connect Dialogflow to Cloud Function and Firestore
-The final step is to connect Dialogflow to our Cloud Function and Firestore. 
-This will allow Dialogflow to send user requests to our Cloud Function and retrieve responses from Firestore. 
-Follow these steps to connect Dialogflow to our Cloud Function and Firestore:
-1. Go to the Fulfillment section in the Dialogflow Console.
-    2. Enable Webhook and enter the URL of your Cloud Function.
-        3. Click on "Save".
-            4. Go to the Integrations section in the Dialogflow Console.
-                5. Enable Firestore and select the database where you want to store user data.
-                     6. Click on "Save".
-Now our Customer Service chatbot application is ready to use! 
-
-#
+#5. Fulfillment
+Fulfillment is the process of providing a response to the user based on their input. You can create fulfillment by following these steps:
+1. Go to the Dialogflow Console.
+      2. Click on your agent name.
+             3. Click on "Fulfillment".
+                   4. Enable webhook and provide the URL for your fulfillment service.
 CODE:
 
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const {WebhookClient} = require('dialogflow-fulfillment');
+                            gcloud alpha dialogflow webhook create \
+                            --display-name=DISPLAY_NAME \
+                            --uri=URI \
+                            --project=PROJECT_ID
+                            
+Output:
+The output of this step will be a newly created webhook.
 
-admin.initializeApp();
+#6. Deploy & Testing
 
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
-  const agent = new WebhookClient({request, response});
+The final step is to deploy and test your chatbot. You can deploy your chatbot by following these steps:
+1. Go to the Dialogflow Console.
+      2. Click on your agent name.
+           3. Click on "Export and Import".
+                4. Click on "Restore from zip" and upload your Dialogflow agent ZIP file.
+                      5. Click "Import".
+CODE:
+                      gcloud alpha dialogflow agent import \
+                      --source=SOURCE \
+                      --project=PROJECT_ID
 
-  function handleWelcomeIntent(agent) {
-    const userId = request.body.originalDetectIntentRequest.payload.user.userId;
-    const userDataRef = admin.firestore().collection('users').doc(userId);
-
-    userDataRef.get()
-      .then((doc) => {
-        if (doc.exists) {
-          const firstName = doc.data().firstName;
-          agent.add(`Welcome back, ${firstName}! How can I help you today?`);
-        } else {
-          agent.add('Welcome to our customer service chatbot. Please tell me your first name.');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        agent.add('Oops! Something went wrong. Please try again later.');
-      });
-  }
-
-  function handleDefaultFallbackIntent(agent) {
-    agent.add('I did not understand your request. Please try again.');
-  }
-
-  function handleNameIntent(agent) {
-    const userId = request.body.originalDetectIntentRequest.payload.user.userId;
-    const firstName = request.body.queryResult.parameters.firstName;
-    const userDataRef = admin.firestore().collection('users').doc(userId);
-
-    userDataRef.set({firstName: firstName})
-      .then(() => {
-        agent.add(`Nice to meet you, ${firstName}! How can I help you today?`);
-      })
-      .catch((error) => {
-        console.error(error);
-        agent.add('Oops! Something went wrong. Please try again later.');
-      });
-  }
-
-  let intentMap = new Map();
-  intentMap.set('Default Welcome Intent', handleWelcomeIntent);
-  intentMap.set('Default Fallback Intent', handleDefaultFallbackIntent);
-  intentMap.set('Name Intent', handleNameIntent);
-
-  agent.handleRequest(intentMap);
-});
+Output:
+The output of this step will be a newly deployed chatbot.
