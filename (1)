@@ -7,7 +7,7 @@ The first step is to create a project on GCP. This can be done by following thes
 
 CODE:
 
-                                gcloud projects create PROJECT_ID --name=PROJECT_NAME
+gcloud projects create PROJECT_ID --name=PROJECT_NAME
 
 Output:
 
@@ -24,10 +24,10 @@ You can create a Dialogflow agent by following these steps:
 
 CODE:
 
-                                gcloud alpha dialogflow agents create --language-code=LANGUAGE_CODE \
-                                --default-time-zone=TIME_ZONE \
-                                --display-name=DISPLAY_NAME \
-                                --project=PROJECT_ID
+gcloud alpha dialogflow agents create --language-code=LANGUAGE_CODE \
+--default-time-zone=TIME_ZONE \
+--display-name=DISPLAY_NAME \
+--project=PROJECT_ID
 
 Output:
 The output of this step will be a newly created Dialogflow agent.
