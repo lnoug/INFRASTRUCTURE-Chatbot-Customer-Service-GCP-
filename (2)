@@ -1,0 +1,59 @@
+#5. Create a Cloud Function
+
+The next step is to create a Cloud Function that will handle the user's request and respond with the appropriate message. 
+Follow these steps to create a new Cloud Function:
+    1.Go to the Cloud Functions Console and click on "Create Function".
+        2.Enter a name for the function and select the trigger type (HTTP).
+            3.Paste the following code into the editor:
+            
+CODE:
+
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
+  const agent = new WebhookClient({request, response});
+  
+  function handleWelcomeIntent(agent) {
+    agent.add('Welcome to our customer service chatbot.');
+  }
+  
+  function handleDefaultFallbackIntent(agent) {
+    agent.add('I did not understand your request. Please try again.');
+  }
+  
+  let intentMap = new Map();
+  intentMap.set('Default Welcome Intent', handleWelcomeIntent);
+  intentMap.set('Default Fallback Intent', handleDefaultFallbackIntent);
+  
+  agent.handleRequest(intentMap);
+});
+
+_______________________________________________________________________________dont copy this line.
+
+This code sets up two intent handlers: one for the default welcome intent and one for the default fallback intent.
+The welcome intent sends a greeting message to the user, while the fallback intent sends a message asking the user to try again.
+
+# 
+
+Another sample to create a Cloud Function
+
+CODE:
+
+const functions = require('firebase-functions');
+const {WebhookClient} = require('dialogflow-fulfillment');
+
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
+  const agent = new WebhookClient({request, response});
+
+  function handleWelcomeIntent(agent) {
+    agent.add('Welcome to our customer service chatbot.');
+  }
+
+  function handleDefaultFallbackIntent(agent) {
+    agent.add('I did not understand your request. Please try again.');
+  }
+
+  let intentMap = new Map();
+  intentMap.set('Default Welcome Intent', handleWelcomeIntent);
+  intentMap.set('Default Fallback Intent', handleDefaultFallbackIntent);
+
+  agent.handleRequest(intentMap);
+});
