@@ -1,33 +1,33 @@
 # 1. Create a GCP Project
-The first step is to create a new GCP project. 
-Follow these steps to create a new project:
-1. Go to the GCP Console and click on the "Projects" dropdown menu.
-    2. Click on "New Project" and enter a name for your project.
-        3. Select a billing account and click "Create".
-        
-# 2. Enable required APIs
-The next step is to enable the required APIs for our project. 
-Follow these steps to enable the APIs:
-      1. Go to the APIs & Services Dashboard in the GCP Console.
-                2. Click on "Enable APIs and Services".
-                          3. Search for the following APIs:
-                                  Dialogflow API
-                                  Cloud Functions API
-                                  Cloud Firestore API
-                                       4. Enable these APIs for your project.        
-# 3. Create a Dialogflow Agent
-The next step is to create a Dialogflow agent. 
-Follow these steps to create a new agent:
-1. Go to the Dialogflow Console and click on "Create Agent".
-    2. Enter a name for your agent and select the default language.
-        3. Click on "Create".            
-        
-#4. Create Intents and Responses
-The next step is to create intents and responses for our agent. 
-Intents represent the user's intention when they ask a question or make a statement.
-Responses are the messages that the agent sends back to the user. 
-Follow these steps to create a new intent:
-1. Go to the Intents section in the Dialogflow Console.
-    2. Click on "Create Intent".
-        3. Enter a name for the intent and add training phrases that the user might use to ask a question or make a statement.
-            4. Add responses that the agent should send back to the user when the intent is triggered.        
+
+The first step is to create a project on GCP. This can be done by following these steps:
+1. Go to the GCP Console.
+        2. Click on the drop-down menu in the top left corner and select "New Project".
+                3. Enter a name for your project and click "Create".
+
+CODE:
+
+                                gcloud projects create PROJECT_ID --name=PROJECT_NAME
+
+Output:
+
+The output of this step will be a newly created project with a unique project ID.
+
+# 2. Create a Dialogflow Agent
+
+Create a Dialogflow agent. Dialogflow is a natural language processing platform that allows you to create conversational interfaces such as chatbots.
+You can create a Dialogflow agent by following these steps:
+1. Go to the Dialogflow Console.
+            2. Click on "Create Agent".
+                        3. Enter a name for your agent and select the default language.
+                                    4. Click "Create".
+
+CODE:
+
+                                gcloud alpha dialogflow agents create --language-code=LANGUAGE_CODE \
+                                --default-time-zone=TIME_ZONE \
+                                --display-name=DISPLAY_NAME \
+                                --project=PROJECT_ID
+
+Output:
+The output of this step will be a newly created Dialogflow agent.
