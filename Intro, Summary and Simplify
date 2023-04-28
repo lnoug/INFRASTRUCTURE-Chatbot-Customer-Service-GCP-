@@ -1,19 +1,12 @@
 # INTRO
 
-A Customer Service chatbot is a type of application that uses artificial intelligence to help customers find information and solve problems related to a product or service.
-In this expert code infrastructure, we will create a functional Customer Service chatbot application on Google Cloud Platform (GCP) using Dialogflow, Cloud Functions, and Firestore.
-The application will allow users to ask questions and receive answers related to a product or service, improving customer satisfaction and reducing the workload of human support staff.
+A customer service chatbot can help customers get answers to their questions and solve problems quickly. In this guide, we will walk you through the steps to create a functional customer service chatbot application on Google Cloud Platform (GCP). We will cover everything from creating a project to deploying and monitoring your chatbot application.
+
 
 # SUMMARY
 
-In this code infrastructure, we created a Customer Service chatbot application on Google Cloud Platform (GCP) using Dialogflow, Cloud Functions, and Firestore. 
-We taught the chatbot what kinds of questions people might ask and what answers it should give. We also made sure that the chatbot is connected to a special place where it can remember who you are and what questions you've asked before.
-When you talk to the chatbot, it will try to help you right away. If it doesn't understand what you're saying, it will ask you to try again. If you're new to the chatbot, it will ask for your name so that it can remember you.
+To create a chatbot that can talk to people and answer their questions, we need to use a special tool called Dialogflow. We will use Google Cloud Platform to create our chatbot. First, we create a new project on GCP. Then, we use Dialogflow to create our chatbot by telling it what kinds of things people might say and what kinds of things our chatbot should say back. We also need to teach our chatbot how to understand important information from what people say, like their name or what they're asking about. Finally, we test our chatbot to make sure it works well and can help people understand things better. To make sure our chatbot is working properly, we can use a tool called Stackdriver. It helps us keep an eye on our chatbot and make sure it's running smoothly.
 
 # Simplify
 
-We created a special talking robot that can help people with questions about a product or service.
-We taught the robot what kinds of questions people might ask and what answers it should give. 
-We also made sure that the robot is connected to a special place where it can remember who you are and what questions you've asked before. When you talk to the robot, it will try to help you right away. 
-If it doesn't understand what you're saying, it will ask you to try again. If you're new to the robot, it will ask for your name so that it can remember you.
-
+To make a chatbot that can talk to people and answer their questions, we need to use a tool called Dialogflow. First, we create a new project on Google Cloud Platform. Next, we tell Dialogflow how to understand what people are saying and how to respond. We also teach Dialogflow how to understand important information like a person's name. Then, we test our chatbot to make sure it works well and can help people understand things better. Finally, we use a tool called Stackdriver to make sure our chatbot is working properly. If something goes wrong, we can see what happened and try to fix it.
