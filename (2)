@@ -7,13 +7,13 @@ Go to the Dialogflow Console.
                         4. Click "Save".
                         
 CODE:
-                                        gcloud alpha dialogflow intents create \
-                                        --display-name=DISPLAY_NAME \
-                                        --training-phrases-parts="PART_1" \
-                                        --training-phrases-parts="PART_2" \
-                                        --message-texts="RESPONSE_1" \
-                                        --message-texts="RESPONSE_2" \
-                                        --project=PROJECT_ID
+gcloud alpha dialogflow intents create \
+--display-name=DISPLAY_NAME \
+--training-phrases-parts="PART_1" \
+--training-phrases-parts="PART_2" \
+--message-texts="RESPONSE_1" \
+--message-texts="RESPONSE_2" \
+--project=PROJECT_ID
                                         
                                         
 Output:
@@ -28,13 +28,13 @@ Entities are used to extract important information from user input. You can crea
                                     5. Click "Save".
 
 CODE:
-                                        gcloud alpha dialogflow entities create \
-                                        --display-name=DISPLAY_NAME \
-                                        --kind=KIND \
-                                        --value=VALUE \
-                                        --synonyms="SYNONYM_1" \
-                                        --synonyms="SYNONYM_2" \
-                                        --project=PROJECT_ID
+gcloud alpha dialogflow entities create \
+--display-name=DISPLAY_NAME \
+--kind=KIND \
+--value=VALUE \
+--synonyms="SYNONYM_1" \
+--synonyms="SYNONYM_2" \
+--project=PROJECT_ID
                                         
 Output:
 The output of this step will be a newly created entity.                                        
